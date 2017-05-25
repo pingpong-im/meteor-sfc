@@ -1,6 +1,6 @@
 {
   "name": "meteor-sfc",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Meteor Single File Components",
   "main": "meteor-sfc.js",
   "scripts": {
@@ -23,5 +23,8 @@
     "filewatcher": "^3.0.1",
     "watchr": "^3.0.1",
     "xmldom": "^0.1.27"
+  },
+  "bin": {
+    "meteor-sfc": "./meteor-sfc.js"
   }
 }
