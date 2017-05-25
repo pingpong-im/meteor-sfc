@@ -1,0 +1,27 @@
+{
+  "name": "meteor-sfc",
+  "version": "1.0.0",
+  "description": "Meteor Single File Components",
+  "main": "meteor-sfc.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pingpong-im/meteor-sfc.git"
+  },
+  "keywords": [
+    "meteor"
+  ],
+  "author": "Ruslan Inozemtsev",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pingpong-im/meteor-sfc/issues"
+  },
+  "homepage": "https://github.com/pingpong-im/meteor-sfc#readme",
+  "dependencies": {
+    "filewatcher": "^3.0.1",
+    "watchr": "^3.0.1",
+    "xmldom": "^0.1.27"
+  }
+}
