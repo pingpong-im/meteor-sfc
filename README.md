@@ -1,18 +1,16 @@
-#meteor-sfc
+# meteor-sfc
 
 This package implements single file component for meteor.js
-
 Regular meteor approach is to put html, less and js files into different files.
-
 But having all in single file component is more visual. 
 
-This inspired by https://vuejs.org/v2/guide/single-file-components.html
+Inspired by https://vuejs.org/v2/guide/single-file-components.html
 
-##Installation
+## Installation
  
  npm i -g meteor-sfc
 
-##Usage
+## Usage
 
 Put all code into file with .ui extension 
 
