@@ -1,9 +1,11 @@
-<template name="test">
-  <h1>{{name}}</h1>
+<template name="hacker">
+  <div class="hacker">
+    <h1 class="hacker_name">{{name}}</h1>
+  </div>
 </template>
 
 <script>
-  Template.test.helpers({
+  Template.hacker.helpers({
     name () {
       return 'Neo'
     }
@@ -11,7 +13,8 @@
 </script>
 
 <style lang="less">
-  h1 {
-    color: red;
+  .hacker_name {
+    color: yellow;
+    background-color: #333;
   }
 </style>

@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 
 var DOMParser = require('xmldom').DOMParser;
-var filewatcher = require('filewatcher');
 var watchr = require('watchr');
 var path = require('path');
 var fs = require('fs');
@@ -11,6 +10,11 @@ var processFile = function (filePath) {
   var parsed = path.parse(filePath);
   var source = fs.readFileSync(filePath, 'utf-8');
   var doc = new DOMParser().parseFromString(source);
+
+  if (!doc) {
+    return
+  }
+
   var templates = doc.getElementsByTagName('template');
   var script = doc.getElementsByTagName('script')[0] + '';
   var style = doc.getElementsByTagName('style')[0] + '';
@@ -24,7 +28,7 @@ var processFile = function (filePath) {
   var styleContent = style.replace(/<.*style.*>/gi, '');
   var stylePath = path.join(parsed.dir, parsed.name + '.less');
 
-  for (var i = 0; i < templates.length; i ++) {
+  for (var i = 0; i < templates.length; i++) {
     var template = templates[i];
     templateContent += template + '\n';
   }
@@ -36,10 +40,11 @@ var processFile = function (filePath) {
 }
 
 if (process.argv[2] === '--file') {
+  console.log('processing file', process.argv[3])
   processFile(process.argv[3])
 } else {
   console.log('watching', process.argv[3]);
-  function listener (changeType, fullPath, currentStat, previousStat) {
+  function listener(changeType, fullPath, currentStat, previousStat) {
     if (path.parse(fullPath).ext !== '.ui') {
       return
     }
@@ -49,13 +54,12 @@ if (process.argv[2] === '--file') {
     }
   }
 
-  function next (err) {
-    if ( err )  return console.log('watch failed on', path, 'with error', err)
-    //console.log('watch successful on', path)
+  function next(err) {
+    if (err)  return console.log('watch failed on', path, 'with error', err)
   }
 
   var stalker = watchr.open(process.argv[3], listener, next)
 
- //stalker.close()
+  //stalker.close()
 
 }

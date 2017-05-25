@@ -1,6 +1,6 @@
 {
   "name": "meteor-sfc",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Meteor Single File Components",
   "main": "meteor-sfc.js",
   "scripts": {
@@ -20,7 +20,6 @@
   },
   "homepage": "https://github.com/pingpong-im/meteor-sfc#readme",
   "dependencies": {
-    "filewatcher": "^3.0.1",
     "watchr": "^3.0.1",
     "xmldom": "^0.1.27"
   },

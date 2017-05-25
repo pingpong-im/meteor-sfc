@@ -1,5 +1,5 @@
 
-  Template.test.helpers({
+  Template.hacker.helpers({
     name () {
       return 'Neo'
     }
