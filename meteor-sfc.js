@@ -30,8 +30,8 @@ var processFile = function (filePath) {
   }
 
   fs.writeFileSync(templatePath, templateContent);
-  fs.writeFileSync(scriptPath, scriptContent);
-  fs.writeFileSync(stylePath, styleContent);
+  if (scriptContent !== 'undefined') fs.writeFileSync(scriptPath, scriptContent);
+  if (styleContent !== 'undefined') fs.writeFileSync(stylePath, styleContent);
 
 }
 

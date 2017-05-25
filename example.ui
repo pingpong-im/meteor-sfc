@@ -1,0 +1,16 @@
+<template name="test">
+  <h1>{{name}}</h1>
+</template>
+<script>
+  Template.test.helpers({
+    name () {
+      return 'Neo'
+    }
+  })
+</script>
+
+<style lang="less">
+  h1 {
+    color: red;
+  }
+</style>
