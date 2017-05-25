@@ -1,6 +1,7 @@
 <template name="test">
   <h1>{{name}}</h1>
 </template>
+
 <script>
   Template.test.helpers({
     name () {
