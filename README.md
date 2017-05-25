@@ -1,6 +1,18 @@
-# meteor-sfc
+#meteor-sfc
 
-This package implements single file component for Meteor
+This package implements single file component for meteor.js
+
+Regular meteor approach is to put html, less and js files into different files.
+
+But having all in single file component is more visual. 
+
+This inspired by https://vuejs.org/v2/guide/single-file-components.html
+
+##Installation
+ 
+ npm i -g meteor-sfc
+
+##Usage
 
 Put all code into file with .ui extension 
 
@@ -25,20 +37,18 @@ example.ui
 </style>
 ~~~~
 
-meteor-sfc will parse and create
- 
-example.html with handlebars templates
-example.less with styles
-example.js with scripts 
+meteor-sfc will parse **example.ui** and create at the same level:
+**example.html** with handlebars templates <br>
+**example.less** with styles <br>
+**example.js** with scripts 
 
-RUN
 
-meteor-sfc --file example.ui
+### Parse single file
 
-to process single file. This could be used for like filewatcher for webstorm
+meteor-sfc --file ./components/example.ui
 
-or
+note: you can add meteor-sfc as a filewatcher to webstorm IDE
 
-meteor-sfc --dir .
+### Watch directory 
 
-to watch folder for changes and automatically parse component
+meteor-sfc --dir ./components
