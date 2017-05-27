@@ -1,41 +1,40 @@
 #!/usr/bin/env node
 
 var DOMParser = require('xmldom').DOMParser;
+var cheerio = require('cheerio');
 var watchr = require('watchr');
 var path = require('path');
 var fs = require('fs');
 
 var processFile = function (filePath) {
 
-  var parsed = path.parse(filePath);
+  var parsedPath = path.parse(filePath);
   var source = fs.readFileSync(filePath, 'utf-8');
-  var doc = new DOMParser().parseFromString(source);
+  var $ = cheerio.load(source, {
+    decodeEntities: false,
+    xmlMode: false,
+  });
 
-  if (!doc) {
+  if (!$) {
     return
   }
 
-  var templates = doc.getElementsByTagName('template');
-  var script = doc.getElementsByTagName('script')[0] + '';
-  var style = doc.getElementsByTagName('style')[0] + '';
+  var templates = $('<div>').append($('template'));
+  var script = $('script');
+  var style = $('style');
+  
+  var templateContent = templates.html();
+  var templatePath = path.join(parsedPath.dir, parsedPath.name + '.html');
 
-  var templateContent = '';
-  var templatePath = path.join(parsed.dir, parsed.name + '.html');
+  var scriptContent = script.html();
+  var scriptPath = path.join(parsedPath.dir, parsedPath.name + '.js');
 
-  var scriptContent = script.replace(/<.*script.*>/gi, '');
-  var scriptPath = path.join(parsed.dir, parsed.name + '.js');
-
-  var styleContent = style.replace(/<.*style.*>/gi, '');
-  var stylePath = path.join(parsed.dir, parsed.name + '.less');
-
-  for (var i = 0; i < templates.length; i++) {
-    var template = templates[i];
-    templateContent += template + '\n';
-  }
-
-  fs.writeFileSync(templatePath, templateContent);
-  if (scriptContent !== 'undefined') fs.writeFileSync(scriptPath, scriptContent);
-  if (styleContent !== 'undefined') fs.writeFileSync(stylePath, styleContent);
+  var styleContent = style.html();
+  var stylePath = path.join(parsedPath.dir, parsedPath.name + '.less');
+  
+  if (templateContent)  fs.writeFileSync(templatePath, templateContent.replace('}}=""', '}}'));
+  if (scriptContent)    fs.writeFileSync(scriptPath, scriptContent);
+  if (styleContent)     fs.writeFileSync(stylePath, styleContent);
 
 }
 
@@ -61,5 +60,4 @@ if (process.argv[2] === '--file') {
   var stalker = watchr.open(process.argv[3], listener, next)
 
   //stalker.close()
-
 }

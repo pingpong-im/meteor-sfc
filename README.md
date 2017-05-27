@@ -2,7 +2,7 @@
 
 This package implements single file component for meteor.js
 
-Regular meteor approach is to put html, less and js files into different files.
+Regular meteor approach is to put html, less and js into different files.
 
 But having all in single file component is more visual. 
 
@@ -18,12 +18,14 @@ Put all code into file with .ui extension
 
 example.ui
 ~~~~
-<template name="test">
-  <h1>{{name}}</h1>
+<template name="hacker">
+  <div class="hacker">
+    <h1 class="hacker_name">{{name}}</h1>
+  </div>
 </template>
 
 <script>
-  Template.test.helpers({
+  Template.hacker.helpers({
     name () {
       return 'Neo'
     }
@@ -31,8 +33,9 @@ example.ui
 </script>
 
 <style lang="less">
-  h1 {
-    color: red;
+  .hacker_name {
+    color: yellow;
+    background-color: #333;
   }
 </style>
 ~~~~
